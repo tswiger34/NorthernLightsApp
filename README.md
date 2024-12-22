@@ -76,13 +76,12 @@ Access to NOAA’s dashboard and relevant APIs (OpenWeatherMap, Google Maps).
 
 ### Installation
 Clone the repository:
-git clone https://github.com/username/northern-lights-alert.git
+git clone https://github.com/tswiger34/NorthernLightsApp.git
 
 ### Install dependencies:
 
-pip install -r requirements.txt
-
-Set up environment variables for API keys (e.g., NOAA, Twilio, SendGrid).
+- pip install -r requirements.txt
+- Set up environment variables for API keys
 
 ### Run the application:
 
@@ -90,11 +89,9 @@ python app.py
 
 ### Future Plans
 
-Expand to include global aurora alerts.
-
-Develop a mobile app for iOS and Android.
-
-Explore augmented reality (AR) features to visualize auroral activity.
+- Expand to include global aurora alerts.
+- Develop a mobile app for iOS and Android.
+- Explore augmented reality (AR) features to visualize auroral activity.
 
 ### Contributing
 
