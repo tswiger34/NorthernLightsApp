@@ -89,9 +89,8 @@ python app.py
 
 ### Future Plans
 
-- Expand to include global aurora alerts.
-- Develop a mobile app for iOS and Android.
-- Explore augmented reality (AR) features to visualize auroral activity.
+- Expand to include global aurora alerts
+- Develop a mobile app for iOS and Android
 
 ### Contributing
 
