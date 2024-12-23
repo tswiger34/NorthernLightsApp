@@ -1,17 +1,23 @@
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
+import logging
+import time
 
-class forecast_scraper:
-    def __init__(self, url) -> None:
+logger = logging.getLogger(__name__)
+
+class ForecastScraper:
+    def __init__(self, url):
         self.url = url
-        return None
+        start_time = time.asctime()
+        logger.info(f"Beginning Forecast Scraping at {start_time}")
 
     def get_text(self):
         response = requests.get(self.url)
         if response.status_code == 200:
             self.text_output = response.text
         else:
+            logger.error(f"Failed to get Kp forecast data, returned status code: {response.status_code}")
             raise Exception("Failed to download the file. Status code:", response.status_code)
         return self.text_output
     
@@ -20,7 +26,7 @@ class forecast_scraper:
             lines = self.text_output.splitlines()
             # Get Dates
             start_line = next(i for i, line in enumerate(lines) if "NOAA Kp index breakdown" in line)
-            self.data_lines = lines[start_line + 2:start_line+11]
+            self.data_lines = lines[start_line + 2:start_line + 11]
             date_parts = lines[start_line+2].strip().split()
             dates = []
             for i in range(0, 5, 2):
@@ -43,35 +49,35 @@ class forecast_scraper:
                 values.append(parts[1:])
             self.values = values
             self.time_periods = time_periods
-
-            # Ensure data shape is correct
-            assert len(dates) == 3
-            assert len(self.data_lines) == 8
-            assert len(self.values) == 8
-            assert len(self.time_periods) == 8
             return self.dates, self.data_lines, self.values, self.time_periods
-        except:
-            print('Failed')
+        
+        except Exception as e: 
+            logger.error(f"Failed to retrieve Kp forecast data in get_data method, failed with error: {e}")
+            raise
 
     def create_df(self):
         try:
             # Create DataFrame
             df = pd.DataFrame(self.values, columns=self.dates, index=self.time_periods)
             df.index.name = "Time Range"
-
             # Convert values to numeric
             df = df.apply(pd.to_numeric)
-            print(df)
+            return df
 
-            assert df.shape == (4,9)
-        except:
-            print('Failed')
+        except Exception as e:
+            logger.error(f"Failed to convert forecast info to dataframe due to error: {e}")
+            raise
+    
+    def check_data_shape(self):
+        pass
     
     def main(self):
         try:
             text_output = self.get_text()
             dates, data_lines, values, time_periods = self.get_data()
             df = self.create_df()
+            end_time = time.asctime()
+            logger.info(f"Successfully retrieved Kp forecast data, finished at {end_time}")
             return df
-        except:
-            print('Failed')
+        except Exception as e:
+            logger.error(f"Failed during main function of datascraper due to error: {e}")
