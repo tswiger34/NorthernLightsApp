@@ -2,7 +2,6 @@ from datascraping.datascraper import *
 from alerts.alert_manager import *
 from utils.logging_config import *
 import schedule
-import time
 import pandas as pd
 
 '''
@@ -64,3 +63,6 @@ class NLApp:
         message = self.create_message(kp_dict)
         self.alerts.email_alerts(message)
         logger.info("Successfully completed run of main NLApp method")
+
+if __name__ == "__main__":
+    alerts = NLApp()
