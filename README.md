@@ -8,8 +8,18 @@ Northern Lights Alert is an application designed to notify users about opportuni
 - Utilize predictive modeling to improve accuracy in forecasting viewing opportunities.
 
 ## Development Phases
-
-### Phase 1: Minimum Viable Product (MVP)
+### Phase 0: MVP Being Locally Hosted by Users
+Key Features:
+- Scrapes NOAA’s dashboard every 6 hours to check for a Kp index of 5 or higher.
+- Sends alerts via email or SMS with the Kp level and forecasted date.
+- Makefile to help people setup app to host on their local machines
+  
+Technology Stack:
+- Python for backend development.
+- Scheduler: APScheduler
+- Alert System: MIME/SMTP for email
+- User preferences stored in json files and .env file
+### Phase 1: Fully Functional App
 
 The MVP focuses on sending automated alerts when the NOAA (National Oceanic and Atmospheric Administration) forecasts a Kp index of 5 or higher, which indicates geomagnetic activity sufficient to view the Northern Lights in some locations.
 
@@ -22,7 +32,7 @@ Technology Stack:
 - Python for backend development.
 - Scheduler: AWS Lambda
 - Alert System: Twillio for SMS, MIME/SMTP for email
-- Database: SQL Locally Hosted
+- Database: PostgreSQL through AWS
 
 ### Phase 2: Personalized Reports
 
