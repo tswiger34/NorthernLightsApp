@@ -1,7 +1,7 @@
 import logging
 import os
 
-def setup_logging(log_file="northern_lights_alert.log"):
+def setup_logging(log_file="northern_lights_app.log"):
     log_dir = "logs"
     os.makedirs(log_dir, exist_ok=True)
 
