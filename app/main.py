@@ -57,7 +57,7 @@ class NLApp:
         except Exception as e:
             logger.error(f"Failed to create the message body in the create_message method due to: {e}")
             raise
-        
+
     def main(self):
         kp_df = self.forecast_scraper.main()
         kp_dict = self.kp_analysis(kp_df)
@@ -65,5 +65,10 @@ class NLApp:
         self.alerts.email_alerts(message)
         logger.info("Successfully completed run of main NLApp method")
 
-if __name__ == '__main__':
-    app_call = NLApp()
+def run_alerts():
+    alerts = NLApp()
+
+schedule.every(6).hours.do(run_alerts)
+while True:
+    schedule.run_pending()
+    time.sleep(1)
