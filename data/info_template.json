@@ -1,4 +1,6 @@
 {
+    "EmailAlerts": 0,
+    "TextAlerts": 0,
     "Email": "email@email.com",
     "PhoneNumber": "(555)-555-5555"
 }
