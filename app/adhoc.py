@@ -1,3 +1,8 @@
 from datascraping.datascraper import *
-url = 'https://services.swpc.noaa.gov/text/3-day-forecast.txt'
-scraper = ForecastScraper(url=url)
+from alerts.alert_manager import *
+
+test_dict = {
+    "Item1": [1,2,3],
+    "Item2": [3,4,5]
+}
+

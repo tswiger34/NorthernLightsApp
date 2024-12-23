@@ -23,9 +23,11 @@ class NLApp:
             day = col
             day_series = new_df[day]
             day_vals = day_series.values
-            if day_vals.max() >= 2.67:
-                for tr, val in day_series.items():
-                    if val >= 2.67:
+            if day_vals.max() >= 5.00:
+                for i in day_series.items():
+                    val = i[1]
+                    tr = i[0]
+                    if val >= 5.00:
                         high_kp.append({tr:val})
             kp_dict.update({day:high_kp})
         return kp_dict
@@ -35,14 +37,14 @@ class NLApp:
         final_message = "Here is your Northern Lights report:\n"
         for day in days:
             kp_list = kp_dict.get(day)
-            if kp_list is None:
+            if len(kp_list) == 0:
                 final_message = f"{final_message}There is no chance of seeing the Northern Lights on {day}.\n"
             else:
                 final_message = f"{final_message}On {day} there will be a chance to see the Northern Lights!\n"
                 final_message = f"{final_message}The Kp Index will be above 5.00 at these times:\n"
                 for kp in kp_list:
-                    time_range, kp_val = kp.items()
-                    final_message = f"{final_message}At {time_range[0]} the Kp will be {kp_val[0]}.\n"
+                    tr = list(kp.keys())[0]
+                    final_message = f"{final_message}At {tr} the Kp will be {kp.get(tr)}.\n"
         return final_message
 
     def main(self):
@@ -52,5 +54,5 @@ class NLApp:
         self.alerts.email_alerts(message)
         print("Complete!")
 
-if __name__ == 'main':
-    NLApp.main()
+if __name__ == '__main__':
+    app_call = NLApp()

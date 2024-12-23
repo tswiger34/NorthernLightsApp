@@ -7,8 +7,8 @@ import time
 logger = logging.getLogger(__name__)
 
 class ForecastScraper:
-    def __init__(self, url):
-        self.url = url
+    def __init__(self):
+        self.url = 'https://services.swpc.noaa.gov/text/3-day-forecast.txt'
         start_time = time.asctime()
         logger.info(f"Beginning Forecast Scraping at {start_time}")
 

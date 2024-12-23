@@ -25,7 +25,7 @@ load_dotenv()
 logger = logging.getLogger(__name__)
 
 class CreateAlerts:
-    def __init__(self) -> None:
+    def __init__(self):
         # Retrieve contact info/preferences
         try:
             with open('data/info.json', 'r') as f:
@@ -67,7 +67,7 @@ class CreateAlerts:
         try:
             # Get Email credentials
             sender_email = os.getenv("EMAIL_USER")
-            sender_password = os.getenv("EMAIL_PASS")
+            sender_password = os.getenv("APP_PASS")
             print('Email ', sender_email)
             print('Password ', sender_password)
             # Ensure sender email and password are retrieved in correct format and are not missing
