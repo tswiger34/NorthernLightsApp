@@ -1,4 +1,4 @@
 info.json
 .env
 *.log
-app\adhoc.py
+app/adhoc.py
