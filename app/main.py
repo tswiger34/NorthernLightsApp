@@ -64,11 +64,3 @@ class NLApp:
         message = self.create_message(kp_dict)
         self.alerts.email_alerts(message)
         logger.info("Successfully completed run of main NLApp method")
-
-def run_alerts():
-    alerts = NLApp()
-
-schedule.every(6).hours.do(run_alerts)
-while True:
-    schedule.run_pending()
-    time.sleep(1)
