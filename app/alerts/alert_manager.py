@@ -68,8 +68,6 @@ class CreateAlerts:
             # Get Email credentials
             sender_email = os.getenv("EMAIL_USER")
             sender_password = os.getenv("APP_PASS")
-            print('Email ', sender_email)
-            print('Password ', sender_password)
             # Ensure sender email and password are retrieved in correct format and are not missing
             validate_string(sender_email, "Sender Email from .env", logger=logger)
             validate_string(sender_password, "Sender Email Password from .env", logger=logger)
@@ -88,9 +86,6 @@ class CreateAlerts:
             msg['Subject'] = "Northern Lights Alert"
 
             msg.attach(MIMEText(message, 'plain'))
-            print(msg["To"])
-            print(msg["From"])
-            print(msg["Subject"])
             smtp_server = os.getenv("SMTP_SERVER", "smtp.gmail.com")
             smtp_port = int(os.getenv("SMTP_PORT", 587))
 
