@@ -1,11 +1,12 @@
 from app.main import *
-import schedule
+import time
+from threading import Thread
 
 def run_alerts():
-    alerts = NLApp()
+    while True:
+        NLApp()
+        time.sleep(60)
 
-schedule.every(6).hours.do(run_alerts)
-
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+if __name__ == "__main__":
+    Thread(target=run_alerts, daemon=True).start()
+    
