@@ -2,6 +2,33 @@ import unittest
 from unittest.mock import patch, mock_open, MagicMock
 from app.alerts.alert_manager import CreateAlerts
 
+'''
+Test Coverage by Method:
+Get Info and Init:
+- Missing File
+- Missing Text/Email Alerts
+- Missing Email/Phone Number
+- Email Alerts = 1, Text Alerts = 1
+- Email Alerts = 0, Text Alerts = 0
+- Email Alerts = 1, Text Alerts = 0
+- Email Alerts = 0, Text Alerts = 1
+- Invalid Text/Email Alerts Value
+- Invalid Email/Phone Number Value
+- Valid Email/Phone Number
+
+Email Alerts:
+- Missing .env file
+- Missing Password
+- Missing Email
+- Missing Server Name
+- Missing Port Number
+- Invalid Data Type for Password, Email, Server Name, Port Number
+- Incorrect Email/Password combination
+- Incorrect Server Name
+- Incorrect Port Number
+- No message passed
+- Message is of type bool or numeric
+'''
 # Mock JSON data
 mock_json_data = '''
 {
