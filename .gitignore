@@ -1,4 +1,5 @@
-info.json
+*.json
 .env
 *.log
 app/adhoc.py
+app/build
