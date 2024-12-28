@@ -16,19 +16,17 @@ On init:
 logger = setup_logging()
 class NLApp:
     def __init__(self) -> None:
-        self.config_dir = os.path.expanduser(r"~\.northern_lights_alert")
-        self.config_path = os.path.join(self.config_dir, r"data\user_config.json")
-        print(self.config_path)
+        self.app_dir = os.path.expanduser(r"~\.northern_lights_alert")
+        self.data_path = os.path.join(self.app_dir, "data")
+        self.config_path = os.path.join(self.app_dir, r"data\user_config.json")
         if not os.path.exists(self.config_path):
-            print("does not exist")
             SetupWizard()
             self.alerts = CreateAlerts(self.config_path)
-            self.forecast_scraper = ForecastScraper()
+            self.forecast_scraper = ForecastScraper(self.data_path)
             self.main()
         else:
-            print("exists")
             self.alerts = CreateAlerts(self.config_path)
-            self.forecast_scraper = ForecastScraper()
+            self.forecast_scraper = ForecastScraper(self.data_path)
             self.main()
     
     def kp_analysis(self, df: pd.DataFrame):
