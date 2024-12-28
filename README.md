@@ -50,7 +50,7 @@ Key Features:
 - User registration and profile management.
 - A survey to capture user preferences, including location and driving radius.
 - Recommendations for the top 5 viewing locations based on weather forecasts, Kp index, and user inputs.
-- Integration with location services (e.g., Google Maps API) and weather data APIs.
+- Integration with location services such as Google Maps and TheDyrt and weather data APIs.
 
 Technology Stack Additions:
 - React.js for the frontend interface.
@@ -70,21 +70,21 @@ Key Features:
 Technology Stack Additions:
 - Machine learning frameworks, most likely SciKit Learn
 - Data pipeline tools TBD
-- Big data storage and processing (e.g., AWS S3, Apache Spark).
-- Visualization tools (e.g., Plotly Dash, Streamlit).
+- Visualization tools TBD
 
 ## General Infrastructure
 
 ### Tech Infrastructure
-Cloud Hosting: AWS, Google Cloud, or Azure for scalability.
-Database: SQLite for MVP; PostgreSQL or MySQL for later phases.
-APIs: RESTful APIs for backend communication.
-CI/CD: GitHub Actions or Jenkins for continuous integration and deployment.
-Monitoring: Tools like New Relic or Sentry for application performance and error tracking.
+Cloud Hosting: AWS, Google Cloud, or Azure for scalability
+Database: SQLite for MVP; PostgreSQL for later phases
+APIs: TBD
+CI/CD: GitHub Actions for CI/CD of code infrastructure, DVC and MLFlow for predictive modeling
+Monitoring: Tools like New Relic or Sentry for application performance and error tracking
 
 ### Version Control
 
 The project is managed using Git with a public/private repository on GitHub. Versioning and updates will be tracked in the changelog.
+The project is managed using Git with a public repository on GitHub.
 
 ## Getting Started
 ### Prerequisites
@@ -102,12 +102,18 @@ Knowledge of Task Scheduler/Cron Jobs
 
 ### Future Plans
 
-- Expand to include global aurora alerts
-- Develop a mobile app for iOS and Android
+- Expand to include international alerts
 
 ### Contributing
 
 We welcome contributions from the community! Please open an issue or submit a pull request to propose changes or new features.
+
+# Current Status
+This project is currently in phase 0, and is roughly halfway to completetion of this phase. Current tasks in progress as of 12/23/2024 are:
+- Improved logging for debugging
+- Scheduler functionality
+- Unit tests for alerts and Kp forecast scraping
+- Integration testing of core functions
 
 # License
 
