@@ -25,14 +25,14 @@ load_dotenv()
 logger = logging.getLogger(__name__)
 
 class CreateAlerts:
-    def __init__(self):
+    def __init__(self, config_path):
         # Retrieve contact info/preferences
         try:
-            with open('data/info.json', 'r') as f:
+            with open(config_path, 'r') as f:
                 self.contact_info = json.load(f)
                 self.get_info()
         except FileNotFoundError:
-            logger.error("info.json file not found in the data directory.")
+            logger.error("User config file not found in the data directory.")
             raise
         except json.JSONDecodeError as e:
             logger.error(f"Error decoding JSON: {e}")
@@ -61,7 +61,7 @@ class CreateAlerts:
         """
 
         # Ensure self.email is not missing and that it is the correct data type
-        validate_string(self.email, "Email in info.json", logger=logger)
+        validate_string(self.email, "Email in user config", logger=logger)
         
         # Retrieve sensitive email info from .env file
         try:
@@ -73,9 +73,17 @@ class CreateAlerts:
             validate_string(sender_password, "Sender Email Password from .env", logger=logger)
 
         except Exception as e:
-            logger.error(f"Error retrieving sender email info from .env: {e}")
-            print(f"Error retrieving sender email info from .env: {e}")
-            raise
+            if e == FileNotFoundError:
+                logger.info("Could not find environment file, trying user_config file")
+                try:
+                    sender_email = self.contact_info['Email']
+                    sender_password = self.contact_info['APP_PASS']
+                except Exception as e:
+                    logger.error(f"Could not use user_config file due to error: {e}")
+                    raise
+            else:
+                logger.error(f"Could not load environment file due to error: {e}")
+                raise
 
         # Send email alert
         try:
