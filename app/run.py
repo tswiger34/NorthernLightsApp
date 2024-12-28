@@ -1,4 +1,4 @@
-from main import *
+from app.main import *
 import time
 from threading import Thread, Event
 
@@ -23,6 +23,6 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("Shutting down...")
         stop_event.set()
-        alert_thread.join()  # Wait for the thread to finish
+        alert_thread.join()
 
     

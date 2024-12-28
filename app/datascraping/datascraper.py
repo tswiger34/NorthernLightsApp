@@ -7,16 +7,18 @@ import time
 logger = logging.getLogger(__name__)
 
 class ForecastScraper:
-    def __init__(self):
+    def __init__(self, data_path):
         self.url = 'https://services.swpc.noaa.gov/text/3-day-forecast.txt'
         start_time = time.asctime()
         logger.info(f"Beginning Forecast Scraping at {start_time}")
+        self.data_path = data_path
 
     def get_text(self):
         response = requests.get(self.url)
         if response.status_code == 200:
             self.text_output = response.text
-            with open('data/kp_table.txt', 'w') as f:
+            text_path = f'{self.data_path}/kp_table.txt'
+            with open(text_path, 'w') as f:
                 f.writelines(self.text_output)
 
         else:
