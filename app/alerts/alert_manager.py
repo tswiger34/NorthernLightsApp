@@ -15,13 +15,11 @@ import json
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from dotenv import load_dotenv
 import os
 import logging
 from utils.helpers import validate_string
 
 # Load environment variables
-load_dotenv()
 logger = logging.getLogger(__name__)
 
 class CreateAlerts:
@@ -63,27 +61,12 @@ class CreateAlerts:
         # Ensure self.email is not missing and that it is the correct data type
         validate_string(self.email, "Email in user config", logger=logger)
         
-        # Retrieve sensitive email info from .env file
         try:
-            # Get Email credentials
-            sender_email = os.getenv("EMAIL_USER")
-            sender_password = os.getenv("APP_PASS")
-            # Ensure sender email and password are retrieved in correct format and are not missing
-            validate_string(sender_email, "Sender Email from .env", logger=logger)
-            validate_string(sender_password, "Sender Email Password from .env", logger=logger)
-
+            sender_email = self.contact_info['Email']
+            sender_password = self.contact_info['APP_PASS']
         except Exception as e:
-            if e == FileNotFoundError:
-                logger.info("Could not find environment file, trying user_config file")
-                try:
-                    sender_email = self.contact_info['Email']
-                    sender_password = self.contact_info['APP_PASS']
-                except Exception as e:
-                    logger.error(f"Could not use user_config file due to error: {e}")
-                    raise
-            else:
-                logger.error(f"Could not load environment file due to error: {e}")
-                raise
+            logger.error(f"Could not use user_config file due to error: {e}")
+            raise
 
         # Send email alert
         try:
@@ -99,7 +82,7 @@ class CreateAlerts:
 
             # Send the email
             with smtplib.SMTP(smtp_server, smtp_port) as server:
-                print("starting email send")
+                logger.info("starting email send")
                 server.starttls()
                 server.login(sender_email, sender_password)
                 server.send_message(msg)

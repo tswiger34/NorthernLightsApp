@@ -36,15 +36,8 @@ mock_json_data = '''
     "TextAlerts": 0,
     "Email": "test@example.com",
     "PhoneNumber": null
-}
-'''
-mock_env = '''
-{
-    "EMAIL_USER": "test@example.com",
-    "EMAIL_PASS": "mock_password",
-    "SMTP_SERVER": "smtp.gmail.com",
-    "SMTP_PORT": "587"
 }'''
+
 class TestCreateAlerts(unittest.TestCase):
 
     @patch("builtins.open", new_callable=mock_open, read_data=mock_json_data)

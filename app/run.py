@@ -7,7 +7,6 @@ stop_event = Event()
 
 def run_alerts():
     while not stop_event.is_set():
-        print("running")
         NLApp()
         time.sleep(86400)
 
@@ -21,7 +20,7 @@ if __name__ == "__main__":
         while True:
             time.sleep(1)
     except KeyboardInterrupt:
-        print("Shutting down...")
+        logger.info("Shutting down...")
         stop_event.set()
         alert_thread.join()
 

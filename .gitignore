@@ -2,4 +2,3 @@
 .env
 *.log
 app/adhoc.py
-app/build
