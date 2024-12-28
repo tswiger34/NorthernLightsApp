@@ -1,28 +1,46 @@
 # Northern Lights Alert
 
-Northern Lights Alert is an application designed to notify users about opportunities to view the Northern Lights. The app is being developed in three phases, each introducing new features to enhance the user experience and provide more functionality. The project leverages modern technologies for data collection, personalized reporting, and predictive modeling.
+Northern Lights Alert is an application designed to notify users about opportunities to view the Northern Lights. The app is being developed in four phases, each introducing new features to improve the user experience and provide more functionality.
 
 ## Project Goals
-- Provide timely alerts for aurora borealis viewing opportunities.
+- Provide alerts for Northern Lights viewing opportunities.
 - Deliver personalized reports based on user preferences and weather conditions.
 - Utilize predictive modeling to improve accuracy in forecasting viewing opportunities.
 
 ## Development Phases
 
-### Phase 1: Minimum Viable Product (MVP)
+### Phase 0: Minimum Viable Product (MVP)
 
 The MVP focuses on sending automated alerts when the NOAA (National Oceanic and Atmospheric Administration) forecasts a Kp index of 5 or higher, which indicates geomagnetic activity sufficient to view the Northern Lights in some locations.
 
 Key Features:
 - Scrapes NOAA’s dashboard every 6 hours to check for a Kp index of 5 or higher.
-- Sends alerts via email or SMS with the Kp level and forecasted date.
-- Reliable and lightweight backend to manage scheduling and alert distribution.
+- Sends alerts via email with the Kp level and forecasted date.
+- Reliable backend to manage scheduling and alert distribution.
 
 Technology Stack:
-- Python for backend development.
-- Scheduler: AWS Lambda
-- Alert System: Twillio for SMS, MIME/SMTP for email
-- Database: SQL Locally Hosted
+- Python for backend development and setup wizard GUI
+- Scheduler: locally hosted through either task scheduler or cron job
+- Alert System: MIME/SMTP for email
+- Database: None needed, user info stored on users device in a JSON file
+
+### Phase 1: Improved Core Product
+
+In this phase, I will be focusing on improving all of the core functionality of the app and laying the ground work for future phases. This will include making the backend more light weight through the use of java, an improved GUI, and twillio support. I will also begin data aggregation for GIS data, Earth weather data, and Solar data. 
+
+Key Features:
+- Uses API keys for other data sources
+- Twillio support
+- Javascript for GUI
+- Locally hosted database
+
+Technology Stack:
+- Python for webscraping
+- Java for backemd
+- Javascript for GUI
+- SQLite for database management
+- Twillio/SMTP
+- AWS Lambda support for those who choose to deploy to the cloud
 
 ### Phase 2: Personalized Reports
 
@@ -66,26 +84,21 @@ Monitoring: Tools like New Relic or Sentry for application performance and error
 
 ### Version Control
 
-The project is managed using Git with a public/private repository on GitHub.
+The project is managed using Git with a public/private repository on GitHub. Versioning and updates will be tracked in the changelog.
 
 ## Getting Started
 ### Prerequisites
 Python 3.8+
-Node.js for frontend development (Phase 2+).
-Access to NOAA’s dashboard and relevant APIs (OpenWeatherMap, Google Maps).
+Node.js for frontend development (Phase 1+).
+Internet Access
+Knowledge of Task Scheduler/Cron Jobs
 
-### Installation
-Clone the repository:
-git clone https://github.com/tswiger34/NorthernLightsApp.git
+### App Installation
 
-### Install dependencies:
-
-- pip install -r requirements.txt
-- Set up environment variables for API keys
-
-### Run the application:
-
-python app.py
+1. Download the .exe file at dist/NorthernLightsApp.exe
+2. Run file
+3. Enter and save information using setup wizard
+4. Schedule a task scheduler/cron job depending on OS. Set to run on startup
 
 ### Future Plans
 
@@ -102,4 +115,4 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 # Acknowledgments
 
-Special thanks to the NOAA for their open data and resources, and to all contributors and testers who help make this project a reality.
+Special thanks to the NOAA for their open data and resources, and to all contributors and testers who end up helping out.
