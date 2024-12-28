@@ -1,12 +1,28 @@
-from app.main import *
+from main import *
 import time
-from threading import Thread
+from threading import Thread, Event
+
+# Event to signal when to stop the thread
+stop_event = Event()
 
 def run_alerts():
-    while True:
+    while not stop_event.is_set():
+        print("running")
         NLApp()
-        time.sleep(60)
+        time.sleep(86400)
 
 if __name__ == "__main__":
-    Thread(target=run_alerts, daemon=True).start()
+    try:
+        # Start the thread
+        alert_thread = Thread(target=run_alerts, daemon=True)
+        alert_thread.start()
+
+        # Keep the main thread alive
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print("Shutting down...")
+        stop_event.set()
+        alert_thread.join()  # Wait for the thread to finish
+
     

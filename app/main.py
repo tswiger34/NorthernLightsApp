@@ -1,8 +1,12 @@
 from datascraping.datascraper import *
 from alerts.alert_manager import *
 from utils.logging_config import *
-import schedule
+from gui.setupwizard import *
 import pandas as pd
+import tkinter as tk
+import os
+import json
+
 
 '''
 This is the main functionality of the of the app
@@ -12,9 +16,20 @@ On init:
 logger = setup_logging()
 class NLApp:
     def __init__(self) -> None:
-        self.alerts = CreateAlerts()
-        self.forecast_scraper = ForecastScraper()
-        self.main()
+        self.config_dir = os.path.expanduser(r"~\.northern_lights_alert")
+        self.config_path = os.path.join(self.config_dir, r"data\user_config.json")
+        print(self.config_path)
+        if not os.path.exists(self.config_path):
+            print("does not exist")
+            SetupWizard()
+            self.alerts = CreateAlerts(self.config_path)
+            self.forecast_scraper = ForecastScraper()
+            self.main()
+        else:
+            print("exists")
+            self.alerts = CreateAlerts(self.config_path)
+            self.forecast_scraper = ForecastScraper()
+            self.main()
     
     def kp_analysis(self, df: pd.DataFrame):
         try:

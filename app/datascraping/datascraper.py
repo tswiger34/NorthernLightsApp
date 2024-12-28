@@ -16,6 +16,9 @@ class ForecastScraper:
         response = requests.get(self.url)
         if response.status_code == 200:
             self.text_output = response.text
+            with open('data/kp_table.txt', 'w') as f:
+                f.writelines(self.text_output)
+
         else:
             logger.error(f"Failed to get Kp forecast data, returned status code: {response.status_code}")
             raise Exception("Failed to download the file. Status code:", response.status_code)
@@ -27,7 +30,7 @@ class ForecastScraper:
             # Get Dates
             start_line = next(i for i, line in enumerate(lines) if "NOAA Kp index breakdown" in line)
             self.data_lines = lines[start_line + 2:start_line + 11]
-            date_parts = lines[start_line+2].strip().split()
+            date_parts = lines[start_line+2].strip().split()        
             dates = []
             for i in range(0, 5, 2):
                 month = date_parts[i]
@@ -81,3 +84,7 @@ class ForecastScraper:
             return df
         except Exception as e:
             logger.error(f"Failed during main function of datascraper due to error: {e}")
+
+if __name__ == '__main__':
+    scraper = ForecastScraper()
+    scraper.main()
