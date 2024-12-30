@@ -1,4 +1,3 @@
-from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 import logging
@@ -50,6 +49,9 @@ class ForecastScraper:
                     continue
                 # Seperate Values and Time Periods
                 parts = line.split()
+                for i in parts:
+                    if '(' in i:
+                        parts.remove(i)
                 time_periods.append(parts[0])
                 values.append(parts[1:])
             self.values = values
@@ -88,5 +90,5 @@ class ForecastScraper:
             logger.error(f"Failed during main function of datascraper due to error: {e}")
 
 if __name__ == '__main__':
-    scraper = ForecastScraper()
+    scraper = ForecastScraper('data')
     scraper.main()
