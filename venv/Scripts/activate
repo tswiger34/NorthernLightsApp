@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV='C:\Users\swige\OneDrive\Documents\IMPORTANT FILES\Work\DataScience\NorthernLightsAlerts\venv'
+VIRTUAL_ENV='C:\Users\swige\OneDrive\Documents\IMPORTANT FILES\Projects\NorthernLightsAlerts\venv'
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

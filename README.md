@@ -109,12 +109,11 @@ Knowledge of Task Scheduler/Cron Jobs
 We welcome contributions from the community! Please open an issue or submit a pull request to propose changes or new features.
 
 # Current Status
-This project is currently in phase 0, and is roughly halfway to completetion of this phase. Current tasks in progress as of 12/23/2024 are:
-- Improved logging for debugging
-- Scheduler functionality
-- Unit tests for alerts and Kp forecast scraping
-- Integration testing of core functions
-
+This project is currently at the beginning phase 1. Current focus as of 12/30/2024:
+- Primary: Add data aggregation scripts for new data
+- Secondary: Convert app backend to java
+- Tertiary: Improve testing
+ 
 # License
 
 This project is licensed under the MIT License. See the LICENSE file for details.

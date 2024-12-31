@@ -5,3 +5,12 @@
 - Rudimentary unit testing suite
 - Initial setup wizard
 - setup documentation
+
+## [v0.0.2] - 12/30/2024
+### Fixed
+- Bug where the NOAA scraper was not hanling geomagnetic storm scaler correctly
+
+### Added
+- Moon phases webscraper
+- Data aggregation SQL scripts
+- Feature Engineering folder for future use (see data/feature_engineering)
