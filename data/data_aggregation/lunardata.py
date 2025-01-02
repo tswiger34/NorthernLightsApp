@@ -2,7 +2,6 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 from io import StringIO
-import datetime as dt
 
 class PhaseScraper:
     def __init__(self):
@@ -75,6 +74,7 @@ class PhaseScraper:
                     hrs = int(hrs)
                 time = f'{str(hrs)}:{mins}'
             self.dts.append(f'{date} {str(hrs)}:{mins} UTC-08:00')
+        return df
 
     def load_data(self):
         new_dict = {
@@ -85,10 +85,10 @@ class PhaseScraper:
         }
         new_df = pd.DataFrame(new_dict)
         new_df.dropna(subset=['Date'], inplace=True)
-        self.create_dts(new_df)
+        new_df = self.create_dts(new_df)
         new_df['Datetime'] = self.dts
         new_df['Datetime'] = pd.to_datetime(new_df['Datetime'], utc=True)
-        new_df['Date'] = new_df['Datetime'].dt.date
+        new_df['Date'] = new_df['Datetime'].dt.date.astype(str).str.replace('/', '-')
         new_df['Time'] = new_df['Datetime'].dt.time
         new_df.to_csv('data/TestCSVs/MoonPhase.csv')
 
