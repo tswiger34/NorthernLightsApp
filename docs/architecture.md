@@ -11,6 +11,20 @@ To be done later
 - Weather: Scrapes 3-day weather forecasts from Open-Meteo for important weather factors to be used in the recommendation system. This is also stored in a SQLite database
 ### Historical/Live Data
 - Solar Weather: Collected from NOAAs open data, stored in a SQLite database to train models for recommendation system
+
+- Solar Wind Hist (Minute): https://services.swpc.noaa.gov/products/geospace/propagated-solar-wind.json
+- Solar Mag Hist (Minute): https://services.swpc.noaa.gov/products/solar-wind/mag-7-day.json
+- 7-Day Plasma Hist (Minute): https://services.swpc.noaa.gov/products/solar-wind/plasma-7-day.json
+- Aurora Info North Forecast (Minute): https://services.swpc.noaa.gov/text/ovation_latest_aurora_n.txt
+- Aurora Info South Forecast (Minute): https://services.swpc.noaa.gov/text/ovation_latest_aurora_s.txt
+- Kp Historical Detailed (3-hours): https://services.swpc.noaa.gov/text/daily-geomagnetic-indices.txt
+- Kp Forecasts Detailed (3-hours): https://services.swpc.noaa.gov/text/3-day-solar-geomag-predictions.txt
+- Solar Indices Historical (Daily): https://services.swpc.noaa.gov/text/daily-solar-indices.txt
+- Geo Scales (Daily): https://services.swpc.noaa.gov/products/noaa-scales.json
+- Radio Flux Obs (Daily): https://services.swpc.noaa.gov/products/10cm-flux-30-day.json
+- Sunspots (Daily): https://services.swpc.noaa.gov/json/sunspot_report.json
+- Aurora Outcomes: https://www.aurorasaurus.org/
+
 - Earth Weather: Collected from Open-Meteo and stored in a SQLite database to train models for recommendation system
 - Moon Phases: This is collected from https://www.timeanddate.com/moon/phases/ and stored in a SQLite database to be used in recommendation models
 - Artificial Light Pollution Estimates: https://www.nps.gov/subjects/nightskies/datacollectionsites.htm

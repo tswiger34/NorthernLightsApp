@@ -44,6 +44,14 @@
   ('_threading_local',
    'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\_threading_local.py',
    'PYMODULE'),
+  ('alerts',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\app\\alerts\\__init__.py',
+   'PYMODULE'),
+  ('alerts.alert_manager',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\app\\alerts\\alert_manager.py',
+   'PYMODULE'),
   ('app',
    'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
    'FILES\\Projects\\NorthernLightsAlerts\\app\\__init__.py',
@@ -198,6 +206,14 @@
   ('calendar',
    'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\calendar.py',
    'PYMODULE'),
+  ('certifi',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\certifi\\__init__.py',
+   'PYMODULE'),
+  ('certifi.core',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\certifi\\core.py',
+   'PYMODULE'),
   ('cgi', 'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\cgi.py', 'PYMODULE'),
   ('charset_normalizer',
    'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
@@ -277,6 +293,14 @@
    'PYMODULE'),
   ('dataclasses',
    'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\dataclasses.py',
+   'PYMODULE'),
+  ('datascraping',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\app\\datascraping\\__init__.py',
+   'PYMODULE'),
+  ('datascraping.datascraper',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\app\\datascraping\\datascraper.py',
    'PYMODULE'),
   ('datetime',
    'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\datetime.py',
@@ -483,6 +507,21 @@
   ('email.message',
    'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\email\\message.py',
    'PYMODULE'),
+  ('email.mime',
+   'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\email\\mime\\__init__.py',
+   'PYMODULE'),
+  ('email.mime.base',
+   'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\email\\mime\\base.py',
+   'PYMODULE'),
+  ('email.mime.multipart',
+   'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\email\\mime\\multipart.py',
+   'PYMODULE'),
+  ('email.mime.nonmultipart',
+   'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\email\\mime\\nonmultipart.py',
+   'PYMODULE'),
+  ('email.mime.text',
+   'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\email\\mime\\text.py',
+   'PYMODULE'),
   ('email.parser',
    'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\email\\parser.py',
    'PYMODULE'),
@@ -519,6 +558,14 @@
   ('glob',
    'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\glob.py',
    'PYMODULE'),
+  ('gui',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\app\\gui\\__init__.py',
+   'PYMODULE'),
+  ('gui.setupwizard',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\app\\gui\\setupwizard.py',
+   'PYMODULE'),
   ('gzip',
    'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\gzip.py',
    'PYMODULE'),
@@ -546,8 +593,35 @@
   ('http.cookiejar',
    'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\http\\cookiejar.py',
    'PYMODULE'),
+  ('http.cookies',
+   'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\http\\cookies.py',
+   'PYMODULE'),
   ('http.server',
    'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\http\\server.py',
+   'PYMODULE'),
+  ('idna',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\idna\\__init__.py',
+   'PYMODULE'),
+  ('idna.core',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\idna\\core.py',
+   'PYMODULE'),
+  ('idna.idnadata',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\idna\\idnadata.py',
+   'PYMODULE'),
+  ('idna.intranges',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\idna\\intranges.py',
+   'PYMODULE'),
+  ('idna.package_data',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\idna\\package_data.py',
+   'PYMODULE'),
+  ('idna.uts46data',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\idna\\uts46data.py',
    'PYMODULE'),
   ('importlib',
    'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\importlib\\__init__.py',
@@ -2539,6 +2613,74 @@
   ('random',
    'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\random.py',
    'PYMODULE'),
+  ('requests',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\requests\\__init__.py',
+   'PYMODULE'),
+  ('requests.__version__',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\requests\\__version__.py',
+   'PYMODULE'),
+  ('requests._internal_utils',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\requests\\_internal_utils.py',
+   'PYMODULE'),
+  ('requests.adapters',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\requests\\adapters.py',
+   'PYMODULE'),
+  ('requests.api',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\requests\\api.py',
+   'PYMODULE'),
+  ('requests.auth',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\requests\\auth.py',
+   'PYMODULE'),
+  ('requests.certs',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\requests\\certs.py',
+   'PYMODULE'),
+  ('requests.compat',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\requests\\compat.py',
+   'PYMODULE'),
+  ('requests.cookies',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\requests\\cookies.py',
+   'PYMODULE'),
+  ('requests.exceptions',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\requests\\exceptions.py',
+   'PYMODULE'),
+  ('requests.hooks',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\requests\\hooks.py',
+   'PYMODULE'),
+  ('requests.models',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\requests\\models.py',
+   'PYMODULE'),
+  ('requests.packages',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\requests\\packages.py',
+   'PYMODULE'),
+  ('requests.sessions',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\requests\\sessions.py',
+   'PYMODULE'),
+  ('requests.status_codes',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\requests\\status_codes.py',
+   'PYMODULE'),
+  ('requests.structures',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\requests\\structures.py',
+   'PYMODULE'),
+  ('requests.utils',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\requests\\utils.py',
+   'PYMODULE'),
   ('rlcompleter',
    'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\rlcompleter.py',
    'PYMODULE'),
@@ -3193,6 +3335,9 @@
    'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
    'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\six.py',
    'PYMODULE'),
+  ('smtplib',
+   'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\smtplib.py',
+   'PYMODULE'),
   ('socket',
    'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\socket.py',
    'PYMODULE'),
@@ -3267,8 +3412,14 @@
   ('tkinter',
    'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\tkinter\\__init__.py',
    'PYMODULE'),
+  ('tkinter.commondialog',
+   'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\tkinter\\commondialog.py',
+   'PYMODULE'),
   ('tkinter.constants',
    'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\tkinter\\constants.py',
+   'PYMODULE'),
+  ('tkinter.messagebox',
+   'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\tkinter\\messagebox.py',
    'PYMODULE'),
   ('token',
    'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\token.py',
@@ -3353,6 +3504,166 @@
    'PYMODULE'),
   ('urllib.response',
    'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\urllib\\response.py',
+   'PYMODULE'),
+  ('urllib3',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\__init__.py',
+   'PYMODULE'),
+  ('urllib3._base_connection',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\_base_connection.py',
+   'PYMODULE'),
+  ('urllib3._collections',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\_collections.py',
+   'PYMODULE'),
+  ('urllib3._request_methods',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\_request_methods.py',
+   'PYMODULE'),
+  ('urllib3._version',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\_version.py',
+   'PYMODULE'),
+  ('urllib3.connection',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\connection.py',
+   'PYMODULE'),
+  ('urllib3.connectionpool',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\connectionpool.py',
+   'PYMODULE'),
+  ('urllib3.contrib',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\contrib\\__init__.py',
+   'PYMODULE'),
+  ('urllib3.contrib.emscripten',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\contrib\\emscripten\\__init__.py',
+   'PYMODULE'),
+  ('urllib3.contrib.emscripten.connection',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\contrib\\emscripten\\connection.py',
+   'PYMODULE'),
+  ('urllib3.contrib.emscripten.fetch',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\contrib\\emscripten\\fetch.py',
+   'PYMODULE'),
+  ('urllib3.contrib.emscripten.request',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\contrib\\emscripten\\request.py',
+   'PYMODULE'),
+  ('urllib3.contrib.emscripten.response',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\contrib\\emscripten\\response.py',
+   'PYMODULE'),
+  ('urllib3.contrib.pyopenssl',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\contrib\\pyopenssl.py',
+   'PYMODULE'),
+  ('urllib3.contrib.socks',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\contrib\\socks.py',
+   'PYMODULE'),
+  ('urllib3.exceptions',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\exceptions.py',
+   'PYMODULE'),
+  ('urllib3.fields',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\fields.py',
+   'PYMODULE'),
+  ('urllib3.filepost',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\filepost.py',
+   'PYMODULE'),
+  ('urllib3.http2',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\http2\\__init__.py',
+   'PYMODULE'),
+  ('urllib3.http2.connection',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\http2\\connection.py',
+   'PYMODULE'),
+  ('urllib3.http2.probe',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\http2\\probe.py',
+   'PYMODULE'),
+  ('urllib3.poolmanager',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\poolmanager.py',
+   'PYMODULE'),
+  ('urllib3.response',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\response.py',
+   'PYMODULE'),
+  ('urllib3.util',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\util\\__init__.py',
+   'PYMODULE'),
+  ('urllib3.util.connection',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\util\\connection.py',
+   'PYMODULE'),
+  ('urllib3.util.proxy',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\util\\proxy.py',
+   'PYMODULE'),
+  ('urllib3.util.request',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\util\\request.py',
+   'PYMODULE'),
+  ('urllib3.util.response',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\util\\response.py',
+   'PYMODULE'),
+  ('urllib3.util.retry',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\util\\retry.py',
+   'PYMODULE'),
+  ('urllib3.util.ssl_',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\util\\ssl_.py',
+   'PYMODULE'),
+  ('urllib3.util.ssl_match_hostname',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\util\\ssl_match_hostname.py',
+   'PYMODULE'),
+  ('urllib3.util.ssltransport',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\util\\ssltransport.py',
+   'PYMODULE'),
+  ('urllib3.util.timeout',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\util\\timeout.py',
+   'PYMODULE'),
+  ('urllib3.util.url',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\util\\url.py',
+   'PYMODULE'),
+  ('urllib3.util.util',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\util\\util.py',
+   'PYMODULE'),
+  ('urllib3.util.wait',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\venv\\lib\\site-packages\\urllib3\\util\\wait.py',
+   'PYMODULE'),
+  ('utils',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\app\\utils\\__init__.py',
+   'PYMODULE'),
+  ('utils.helpers',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\app\\utils\\helpers.py',
+   'PYMODULE'),
+  ('utils.logging_config',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\app\\utils\\logging_config.py',
+   'PYMODULE'),
+  ('utils.setup_logging',
+   'C:\\Users\\swige\\OneDrive\\Documents\\IMPORTANT '
+   'FILES\\Projects\\NorthernLightsAlerts\\app\\utils\\setup_logging.py',
    'PYMODULE'),
   ('uu', 'C:\\Users\\swige\\anaconda3\\envs\\NLApp\\lib\\uu.py', 'PYMODULE'),
   ('uuid',

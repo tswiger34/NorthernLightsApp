@@ -11,6 +11,6 @@ echo "Installing dependencies..."
 pip install -r requirements.txt
 
 echo "Building executable file..."
-pyinstaller --onefile --name="NorthernLightsApp" --icon="app/gui/PorscheNorthernLightsSmall.ico" app/run.py
+pyinstaller --onefile --name="NorthernLightsApp" --icon="app/gui/PorscheNorthernLightsSmall.ico" --paths="app" app/run.py
 
 echo "Build process completed!"
