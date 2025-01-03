@@ -43,7 +43,7 @@ This document provides detailed information about the datasets used in the proje
 | Variable Name | Data Type | Description                         | Allowed Values/Range     | Notes                          |
 |---------------|------------|-------------------------------------|--------------------------|--------------------------------|
 | `[TableName]WeatherID`  | `INT` | This is the unqiue identifier for each record | 0-2,147,483,647 | This will be autoincremented starting at 0 | Found in all tables |
-| `DateID`  | `INT` | This identifies the date of the record and is associated with a date value in the date table | 0-2,147,483,647 | This will save space over using strings for dates, found in all tables |
+| `DateID`  | `INT` | This identifies the date of the record and is associated with a date value in the date table | Unsure | This will save space over using strings for dates, found in all tables |
 | `SolarWindSpeed` | `REAL` | This is a measurement of the solar wind speed in **Add Units** | Unsure | Minute table |
 | `SolarWindDensity` | `REAL` | This is a measurement of the solar wind density in **Add Units** | Unsure | Minute table |
 | `SolarWindTemp` | `INT` | This is a measurement of the solar wind temperature in **Add Units** | Unsure | Minute table |
@@ -199,4 +199,4 @@ This document provides detailed information about the datasets used in the proje
 ---
 
 ## Changelog
-- **Version 1.0** (2024-01-02): Initial creation of the data dictionary.
+- **Version 1.0** (2025-01-02): Initial creation of the data dictionary.
