@@ -23,6 +23,13 @@ from utils.helpers import validate_string
 logger = logging.getLogger(__name__)
 
 class CreateAlerts:
+    """
+    This class handles sending the alerts to the user.
+
+    Methods:
+    - get_info: Gets the user preferences from the config/json file
+    - email_alerts: constructs and sends the email to the user
+    """
     def __init__(self, config_path):
         # Retrieve contact info/preferences
         try:

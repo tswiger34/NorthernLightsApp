@@ -5,19 +5,41 @@ import json
 import os
 logger = setup_logging()
 class SetupWizard:
+    """
+    This class is used for the setup wizard which the user interacts with to save their information including
+    their alert preferences, email, location, phone number, and time zone
+
+    Methods:
+    - launch_setup_wizard:
+    - save_user_data:
+    - setup_wizard:
+    
+    Attributes:
+    - config_dir (str): the root directory where the configuration file is stored
+    - config_path (str): The file path for the configuration file
+    - root (Tk): The top level widget created by Tkinter
+
+    """
     def __init__(self):
         self.config_dir = os.path.expanduser(r"~\.northern_lights_alert")
         self.config_path = os.path.join(self.config_dir, "data/user_config.json")
         self.launch_setup_wizard()
     
     def launch_setup_wizard(self):
+        """
+        Responsible for initializing and launching the setup wizard on the users screen.
+        """
         # Create the setup wizard window
         self.root = tk.Tk()
         self.root.title("Northern Lights Alert - Setup Wizard")
         self.setup_wizard()
         self.root.mainloop()
 
-    def save_user_data(self, email, password, city):
+    def save_user_data(self, email:str, password:str, city:str) -> None:
+        """
+        Saves the user data as a json file in the specified path, which the user inputs to the wizard. 
+        Makes the directory if it does not exist.
+        """
         os.makedirs(self.config_dir, exist_ok=True)
         data_dir = f"{self.config_dir}/data"
         os.makedirs(data_dir, exist_ok=True)
@@ -38,7 +60,10 @@ class SetupWizard:
             logger.warning(f"There was an exception: {e}")
             return
 
-    def setup_wizard(self):
+    def setup_wizard(self) -> None:
+        """
+        Specifies the fields of the setup wizard and how the user interacts with it.
+        """
         # Create the main window
         self.root.title("Northern Lights Alerts - Setup Wizard")
 

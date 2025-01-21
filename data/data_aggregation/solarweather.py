@@ -100,10 +100,9 @@ class SolarWeatherScraper:
         except Exception as e:
             print(e)
 
-
 class SolarWeatherCleaner:
     def __init__(self):
-        predicted_kp_file_path = 'data/TestCSVs/predictedkp.txt'
+        predicted_kp_file_path = 'data/TestCSVs/PredicctedKp.txt'
         with open(predicted_kp_file_path, 'r') as f:
             predicted_kp_lines = f.readlines()
         self.predicted_kp_lines = predicted_kp_lines

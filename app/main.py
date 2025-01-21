@@ -7,14 +7,24 @@ import tkinter as tk
 import os
 import json
 
-
-'''
-This is the main functionality of the of the app
-
-On init:
-'''
 logger = setup_logging()
 class NLApp:
+    """
+    This is the main class for the app, it orchestrates the web scraper, alerts manager, and setup wizard.
+    It then analyzes the forecast data, and creates the email message body for the alert.
+
+    Methods:
+    - kp_analysis: analyzes the data frame containing the forecasted data and decides if/when the Northern Lights will be visible
+    - create message: Uses the dates and times when the Northern Lights will be visible to create a report to be used in the email alerts 
+    - main: Runs all of the necessary components
+
+    Attributes:
+    - app_dir (str): The root directory where to store/run the app
+    - data_path (str): The root directory where to strore the data
+    - config_path (str): The file path for the user config file
+    - alerts (CreateAlerts): An instance of the CreateAlerts class for sending the alerts 
+    - forecast_scraper (ForecastScraper): An instance of the ForecastScraper class for fetching the data from NOAA
+    """
     def __init__(self) -> None:
         self.app_dir = os.path.expanduser(r"~\.northern_lights_alert")
         self.data_path = os.path.join(self.app_dir, "data")
@@ -29,7 +39,17 @@ class NLApp:
             self.forecast_scraper = ForecastScraper(self.data_path)
             self.main()
     
-    def kp_analysis(self, df: pd.DataFrame):
+    def kp_analysis(self, df: pd.DataFrame) -> dict:
+        """
+        This method analyzes the Kp index data, and uses if-else logic to determine if the northern lights
+        will be visible.
+
+        Args:
+        - df (DataFrame): a pandas DataFrame containing the forecast data
+
+        Returns:
+        - kp_dict (dict): Returns a dictionary of all the dates and times when the Northen Lights may be visible
+        """
         try:
             cols = df.columns
             kp_dict = {}
@@ -51,7 +71,16 @@ class NLApp:
             logger.error(f"Failed to create the kp_dict in the kp_analysis method due to: {e}")
             raise
     
-    def create_message(self, kp_dict: dict):
+    def create_message(self, kp_dict: dict) -> str:
+        """
+        Creates the message body for the alert email.
+
+        Args:
+        - kp_dict (dict): The dictionary output from kp_analysis method
+
+        Returns
+        - final_message (str): The message body of the email alert
+        """
         try:
             days = kp_dict.keys()
             final_message = "Here is your Northern Lights report:\n"
@@ -71,6 +100,9 @@ class NLApp:
             raise
 
     def main(self):
+        """
+        Runs everything together
+        """
         kp_df = self.forecast_scraper.main()
         kp_dict = self.kp_analysis(kp_df)
         message = self.create_message(kp_dict)
