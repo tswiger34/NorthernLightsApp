@@ -1,6 +1,7 @@
 import unittest
-from unittest.mock import patch, mock_open, MagicMock
-from app.alerts.alert_manager import CreateAlerts
+from unittest.mock import mock_open, patch
+
+from py_app.alerts.alert_manager import CreateAlerts
 
 '''
 Test Coverage by Method:
