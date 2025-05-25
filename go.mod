@@ -1,4 +1,4 @@
-module github.com/travis/northern-lights-app
+module github.com/tswiger34/NorthernLightsApp
 
 go 1.24.3
 

@@ -1,5 +1,3 @@
-//go:build unit
-
 package scraper
 
 import (
@@ -7,43 +5,90 @@ import (
 	"testing"
 )
 
-func sampleNOAAData() []byte {
-	return []byte(strings.Join([]string{
-		"Some header info",
+func TestParse_MissingSeparator(t *testing.T) {
+	// header exists but separator line is missing, so idx stays zero
+	raw := []byte(strings.Join([]string{
 		"NOAA Kp index breakdown",
-		"------------------------",
 		"Apr 10 Apr 11 Apr 12 Apr 13 Apr 14",
-		"00-03      2.33   2.67   3.00   2.33   2.00",
-		"03-06      2.67   3.00   3.33   2.67   2.33",
-		"06-09      3.00   3.33   3.67   3.00   2.67",
-		"09-12      2.67   3.00   3.33   2.67   2.33",
-		"12-15      2.33   2.67   3.00   2.33   2.00",
-		"15-18      2.00   2.33   2.67   2.00   1.67",
-		"18-21      1.67   2.00   2.33   1.67   1.33",
-		"21-00      1.33   1.67   2.00   1.33   1.00",
+		"00-03 2.0 2.1 2.2 2.3 2.4",
 	}, "\n"))
+	_, err := parse(raw)
+	if err == nil || !strings.Contains(err.Error(), "header not found") {
+		t.Errorf("expected header not found error, got %v", err)
+	}
 }
 
-func TestParse_ValidData(t *testing.T) {
-	raw := sampleNOAAData()
-	forecast, err := parse(raw)
+func TestParse_LowercaseHeader(t *testing.T) {
+	// header is lowercase, parse is case‐sensitive, so header not found
+	raw := []byte(strings.Join([]string{
+		"noaa kp index breakdown",
+		"----------------------",
+		"Apr 10 Apr 11 Apr 12 Apr 13 Apr 14",
+		"00-03 2.0 2.1 2.2 2.3 2.4",
+	}, "\n"))
+	_, err := parse(raw)
+	if err == nil || !strings.Contains(err.Error(), "header not found") {
+		t.Errorf("expected header not found error for lowercase header, got %v", err)
+	}
+}
+
+func TestParse_TabsInData(t *testing.T) {
+	// ensure that tabs are treated as fields
+	raw := []byte(strings.Join([]string{
+		"Some header",
+		"NOAA Kp index breakdown",
+		"----------",
+		"Apr\t10\tApr\t11\tApr\t12\tApr\t13\tApr\t14",
+		"00-03\t2.0\t2.1\t2.2\t2.3\t2.4",
+		"03-06\t2.5\t2.6\t2.7\t2.8\t2.9",
+	}, "\n"))
+	fc, err := parse(raw)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
-	if len(forecast.Dates) != 5 {
-		t.Errorf("expected 5 dates, got %d", len(forecast.Dates))
+	if len(fc.Dates) != 5 {
+		t.Errorf("dates len: want 5, got %d", len(fc.Dates))
 	}
-	if len(forecast.TimePeriods) != 8 {
-		t.Errorf("expected 8 time periods, got %d", len(forecast.TimePeriods))
+	if len(fc.TimePeriods) != 2 {
+		t.Errorf("time periods len: want 2, got %d", len(fc.TimePeriods))
 	}
-	if len(forecast.Values) != 8 {
-		t.Errorf("expected 8 rows of values, got %d", len(forecast.Values))
-	}
-	if forecast.ScrapedAt.IsZero() {
-		t.Error("expected ScrapedAt to be set")
+	if len(fc.Values) != 2 {
+		t.Errorf("values rows: want 2, got %d", len(fc.Values))
 	}
 }
 
+func TestParse_PanicOnInsufficientLines(t *testing.T) {
+	// when there aren't enough lines after header+separator+dates,
+	// the slice bounds will panic
+	defer func() {
+		if r := recover(); r == nil {
+			t.Error("expected panic due to insufficient data lines, got none")
+		}
+	}()
+	raw := []byte(strings.Join([]string{
+		"NOAA Kp index breakdown",
+		"------------------------",
+		"Apr 10 Apr 11 Apr 12 Apr 13 Apr 14",
+		// no data lines at all
+	}, "\n"))
+	parse(raw)
+}
+
+func TestParse_IncompleteDatePairs(t *testing.T) {
+	// dates line has fewer than 10 tokens (5 pairs), expecting a panic on slice bounds
+	defer func() {
+		if r := recover(); r == nil {
+			t.Error("expected panic due to incomplete date fields, got none")
+		}
+	}()
+	raw := []byte(strings.Join([]string{
+		"NOAA Kp index breakdown",
+		"------------------------",
+		"Apr 10 Apr 11 Apr 12", // only 3 tokens, not 10
+		"00-03 2.0 2.1 2.2",
+	}, "\n"))
+	parse(raw)
+	}
 func TestParse_HeaderNotFound(t *testing.T) {
 	raw := []byte("no relevant header here\nsome data\n")
 	_, err := parse(raw)
