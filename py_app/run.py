@@ -1,6 +1,7 @@
-from app.main import *
 import time
-from threading import Thread, Event
+from threading import Event, Thread
+
+from py_app.main import *
 
 # Event to signal when to stop the thread
 stop_event = Event()
