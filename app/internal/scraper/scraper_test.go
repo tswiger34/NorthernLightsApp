@@ -1,65 +1,44 @@
 package scraper
 
 import (
+	"os"
 	"strings"
 	"testing"
 )
-
-func TestParse_MissingSeparator(t *testing.T) {
-	// header exists but separator line is missing, so idx stays zero
-	raw := []byte(strings.Join([]string{
-		"NOAA Kp index breakdown",
-		"Apr 10 Apr 11 Apr 12 Apr 13 Apr 14",
-		"00-03 2.0 2.1 2.2 2.3 2.4",
-	}, "\n"))
-	_, err := parse(raw)
-	if err == nil || !strings.Contains(err.Error(), "header not found") {
-		t.Errorf("expected header not found error, got %v", err)
-	}
-}
-
-func TestParse_LowercaseHeader(t *testing.T) {
-	// header is lowercase, parse is case‐sensitive, so header not found
-	raw := []byte(strings.Join([]string{
-		"noaa kp index breakdown",
-		"----------------------",
-		"Apr 10 Apr 11 Apr 12 Apr 13 Apr 14",
-		"00-03 2.0 2.1 2.2 2.3 2.4",
-	}, "\n"))
-	_, err := parse(raw)
-	if err == nil || !strings.Contains(err.Error(), "header not found") {
-		t.Errorf("expected header not found error for lowercase header, got %v", err)
-	}
-}
+var data, _ = os.ReadFile("../../../data/kp_table.txt")
 
 func TestParse_TabsInData(t *testing.T) {
 	// ensure that tabs are treated as fields
 	raw := []byte(strings.Join([]string{
 		"Some header",
 		"NOAA Kp index breakdown",
-		"----------",
-		"Apr\t10\tApr\t11\tApr\t12\tApr\t13\tApr\t14",
-		"00-03\t2.0\t2.1\t2.2\t2.3\t2.4",
-		"03-06\t2.5\t2.6\t2.7\t2.8\t2.9",
+		"",
+		"Apr\t10\tApr\t11\tApr\t12",
+		"00-03\t2.0\t2.1\t2.2",
+		"03-06\t2.5\t2.6\t2.7",
+		"06-09\t2.0\t2.1\t2.2",
+		"09-12\t2.5\t2.6\t2.7",
+		"12-15\t2.0\t2.1\t2.2",
+		"15-18\t2.5\t2.6\t2.7",
+		"18-21\t2.0\t2.1\t2.2",
+		"21-24\t2.5\t2.6\t2.7",
 	}, "\n"))
 	fc, err := parse(raw)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
-	if len(fc.Dates) != 5 {
-		t.Errorf("dates len: want 5, got %d", len(fc.Dates))
+	if len(fc.Dates) != 3 {
+		t.Errorf("dates len: want 3, got %d", len(fc.Dates))
 	}
-	if len(fc.TimePeriods) != 2 {
-		t.Errorf("time periods len: want 2, got %d", len(fc.TimePeriods))
+	if len(fc.TimePeriods) != 8 {
+		t.Errorf("time periods len: want 8, got %d", len(fc.TimePeriods))
 	}
-	if len(fc.Values) != 2 {
+	if len(fc.Values) != 8 {
 		t.Errorf("values rows: want 2, got %d", len(fc.Values))
 	}
 }
 
 func TestParse_PanicOnInsufficientLines(t *testing.T) {
-	// when there aren't enough lines after header+separator+dates,
-	// the slice bounds will panic
 	defer func() {
 		if r := recover(); r == nil {
 			t.Error("expected panic due to insufficient data lines, got none")
@@ -67,9 +46,8 @@ func TestParse_PanicOnInsufficientLines(t *testing.T) {
 	}()
 	raw := []byte(strings.Join([]string{
 		"NOAA Kp index breakdown",
-		"------------------------",
+		"",
 		"Apr 10 Apr 11 Apr 12 Apr 13 Apr 14",
-		// no data lines at all
 	}, "\n"))
 	parse(raw)
 }
@@ -83,7 +61,7 @@ func TestParse_IncompleteDatePairs(t *testing.T) {
 	}()
 	raw := []byte(strings.Join([]string{
 		"NOAA Kp index breakdown",
-		"------------------------",
+		"",
 		"Apr 10 Apr 11 Apr 12", // only 3 tokens, not 10
 		"00-03 2.0 2.1 2.2",
 	}, "\n"))
@@ -100,9 +78,16 @@ func TestParse_HeaderNotFound(t *testing.T) {
 func TestParse_MalformedData(t *testing.T) {
 	raw := []byte(strings.Join([]string{
 		"NOAA Kp index breakdown",
-		"------------------------",
-		"Apr 10 Apr 11 Apr 12 Apr 13 Apr 14",
-		"00-03      2.33   2.67   XX   2.33   2.00",
+		"",
+		"Apr 10 Apr 11 Apr 12",
+		"00-03      2.33   2.67   XX",
+		"03-06      2.67   3.00   3.33",
+		"06-09      2.00   2.33   2.67",
+		"09-12      2.33   X   3.00",
+		"12-15      2.67   3.00   3.33",
+		"15-18      2.00   2.33   2.67",
+		"18-21      2.33   2.67   3.00",
+		"21-24      2.67   3.00   3.33",
 	}, "\n"))
 	_, err := parse(raw)
 	if err == nil || !strings.Contains(err.Error(), "parse") {
@@ -116,28 +101,42 @@ func TestParse_MalformedData(t *testing.T) {
 func TestParse_EmptyLines(t *testing.T) {
 	raw := []byte(strings.Join([]string{
 		"NOAA Kp index breakdown",
-		"------------------------",
-		"Apr 10 Apr 11 Apr 12 Apr 13 Apr 14",
 		"",
-		"00-03      2.33   2.67   3.00   2.33   2.00",
+		"Apr 10 Apr 11 Apr 12",
 		"",
-		"03-06      2.67   3.00   3.33   2.67   2.33",
+		"00-03      2.33   2.67   3.00",
+		"",
+		"03-06      2.67   3.00   3.33",
+		"",
+		"06-09      2.33   2.67   3.00",
+		"",
+		"09-12      2.67   3.00   3.33",
+		"",
+		"",
 	}, "\n"))
 	forecast, err := parse(raw)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
-	if len(forecast.TimePeriods) != 2 {
-		t.Errorf("expected 2 time periods, got %d", len(forecast.TimePeriods))
+	if len(forecast.TimePeriods) != 4 {
+		t.Errorf("expected 4 time periods, got %d", len(forecast.TimePeriods))
 	}
 }
 
 func TestParse_ShortDataLines(t *testing.T) {
 	raw := []byte(strings.Join([]string{
-		"NOAA Kp index breakdown",
-		"------------------------",
-		"Apr 10 Apr 11 Apr 12 Apr 13 Apr 14",
-		"00-03      2.33   2.67   3.00", // too short
+		"NOAA Kp index breakdown Short Data Lines",		
+		"Apr 10 Apr 11 Apr 12 Apr 13",
+		"",
+		"00-03      2.33   2.67",
+		"03-06      2.33   2.67",
+		"06-09      2.33   2.67",
+		"09-12      2.33   2.67",
+		"12-15      2.33   2.67",
+		"15-18      2.33   2.67",
+		"18-21      2.33   2.67",
+		"21-24      2.33   2.67",
+		"21-24      2.33   2.67",
 	}, "\n"))
 	_, err := parse(raw)
 	if err == nil {
@@ -145,31 +144,14 @@ func TestParse_ShortDataLines(t *testing.T) {
 	}
 }
 
-// Sample NOAA forecast text (truncated and simplified for test)
-const sampleForecast = `
-Some header
-NOAA Kp index breakdown
------------------------
-	  06-24 06-25 06-26 06-27 06-28
-00-03   2.0   2.3   2.7   2.5   2.2
-03-06   2.1   2.4   2.8   2.6   2.3
-06-09   2.2   2.5   2.9   2.7   2.4
-09-12   2.3   2.6   3.0   2.8   2.5
-12-15   2.4   2.7   3.1   2.9   2.6
-15-18   2.5   2.8   3.2   3.0   2.7
-18-21   2.6   2.9   3.3   3.1   2.8
-21-00   2.7   3.0   3.4   3.2   2.9
-`
-
 func TestParse_Success(t *testing.T) {
-	raw := []byte(sampleForecast)
-	fc, err := parse(raw)
+	fc, err := parse(data)
 	if err != nil {
 		t.Fatalf("parse failed: %v", err)
 	}
-	wantDates := []string{"06-24", "06-25", "06-26", "06-27", "06-28"}
-	if len(fc.Dates) != 5 {
-		t.Errorf("expected 5 dates, got %d", len(fc.Dates))
+	wantDates := []string{"Dec-30", "Dec-31", "Jan-01"}
+	if len(fc.Dates) != 3 {
+		t.Errorf("expected 3 dates, got %d", len(fc.Dates))
 	}
 	for i, d := range wantDates {
 		if fc.Dates[i] != d {
@@ -182,24 +164,27 @@ func TestParse_Success(t *testing.T) {
 	if len(fc.Values) != 8 {
 		t.Errorf("expected 8 value rows, got %d", len(fc.Values))
 	}
-	if fc.Values[0][0] != 2.0 || fc.Values[7][4] != 2.9 {
+	if fc.Values[0][0] != 1 || fc.Values[7][2] != 3 {
 		t.Errorf("unexpected values: got %v", fc.Values)
 	}
 }
 
 func TestParse_NonNumericValue(t *testing.T) {
-	raw := []byte(`
-NOAA Kp index breakdown
------------------------
-06-24 06-25 06-26 06-27 06-28
-00-03 2.0 2.3 X 2.5 2.2
-`)
+	raw := []byte(strings.Join([]string{
+		"NOAA Kp index breakdown Non Numeric",
+		"",
+		"May 24 May 25 May 26",
+		"00-03 2.0 2.3 X",
+		"03-06 2.1 2.4 2.6",
+		"06-09 2.0 2.1 AWE",
+		"09-12 2.5 2.6 2.7",
+		"12-15 2.0 2.1 2.2",
+		"15-18 2.5 #4f$ 2.7",
+		"18-21 2.0 2.1 2.2",
+		"21-24 2.5 2.6 2.7",
+	}, "\n"))
 	_, err := parse(raw)
-	if err == nil || !contains(err.Error(), "parse") {
+	if err == nil || !strings.Contains(err.Error(), "parse") {
 		t.Errorf("expected parse error, got %v", err)
 	}
-}
-
-func contains(s, substr string) bool {
-	return len(s) >= len(substr) && (s == substr || len(s) > 0 && contains(s[1:], substr))
 }

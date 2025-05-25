@@ -11,18 +11,18 @@ import (
 	"github.com/gocolly/colly/v2"
 )
 
-const forecastURL = "https://services.swpc.noaa.gov/text/3-day-forecast.txt"
-
-type Forecast struct {
-	Dates []string
-	TimePeriods []string
-	Values [][]float64
-	ScrapedAt time.Time
+type Forecast struct  {
+	Dates       []string    // Dates for the three days
+	TimePeriods []string    // Time periods for the forecast
+	Values      [][]float64 // Kp index values for each time period
+	ScrapedAt   time.Time   // Timestamp when the forecast was scraped
 }
+const forecastURL = "https://services.swpc.noaa.gov/text/3-day-forecast.txt"
 
 func parse(raw []byte) (*Forecast, error) {
 	scanner := bufio.NewScanner(bytes.NewReader(raw))
-
+	
+	
 	var lines []string
 	for scanner.Scan() {
 		lines = append(lines, scanner.Text())
@@ -30,24 +30,32 @@ func parse(raw []byte) (*Forecast, error) {
 	if err := scanner.Err(); err != nil {
 		return nil, err
 	}
-
 	// 1. Locate the header line
 	var idx int
 	for i, l := range lines {
 		if strings.Contains(l, "NOAA Kp index breakdown") {
-			idx = i + 2 // skip header + separator
+			idx = i + 2
 			break
 		}
 	}
 	if idx == 0 {
-		return nil, fmt.Errorf("header not found")
+		return nil, fmt.Errorf("header not found, got %s lines", lines)
 	}
-	dataLines := lines[idx : idx+9]
 
-	// 2. Extract the five dates from the first data line
+	var endIdx int = idx + 9
+	if len(lines) < endIdx {
+		panic("insufficient data lines")
+	}
+
+	dataLines := lines[idx : endIdx]
+
+	// 2. Extract the three dates from the first data line
 	parts := strings.Fields(dataLines[0])
+	if len(parts) != 6{
+		return nil, fmt.Errorf("expected 3 date parts, got %d", len(parts))
+	}
 	var dates []string
-	for i := range 5 {
+	for i := range 3 {
 		dates = append(dates, fmt.Sprintf("%s-%s", parts[2*i], parts[2*i+1]))
 	}
 
@@ -59,19 +67,48 @@ func parse(raw []byte) (*Forecast, error) {
 			continue
 		}
 		chunks := strings.Fields(l)
+		if len(chunks) < 1+len(dates) {
+			return nil, fmt.Errorf("insufficient data in line: %q", l)
+		}
 		timePeriods = append(timePeriods, chunks[0])
-
+	
 		var row []float64
-		for _, v := range chunks[1:] {
+		dataFieldsProcessed := 0
+		
+		// Process all chunks after the time period, but skip annotations
+		for i := 1; i < len(chunks) && dataFieldsProcessed < len(dates); i++ {
+			v := strings.TrimSpace(chunks[i])
+			
+			// Skip annotation fields that start with "("
+			if strings.HasPrefix(v, "(") {
+				continue
+			}
+			
+			// Remove any trailing annotations like "(G1)" from the value
+			if idx := strings.Index(v, "("); idx != -1 {
+				v = v[:idx]
+				v = strings.TrimSpace(v)
+			}
+			
+			if v == "" {
+				return nil, fmt.Errorf("empty value in data line: %q", l)
+			}
+			
 			f, err := strconv.ParseFloat(v, 64)
 			if err != nil {
 				return nil, fmt.Errorf("parse %q: %w", v, err)
 			}
 			row = append(row, f)
+			dataFieldsProcessed++
 		}
+		
+		if dataFieldsProcessed < len(dates) {
+			return nil, fmt.Errorf("insufficient numeric values in line: %q", l)
+		}
+		
 		values = append(values, row)
 	}
-
+	
 	return &Forecast{
 		Dates:       dates,
 		TimePeriods: timePeriods,
