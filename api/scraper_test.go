@@ -1,11 +1,11 @@
-package scraper
+package api
 
 import (
 	"os"
 	"strings"
 	"testing"
 )
-var data, _ = os.ReadFile("../../../data/kp_table.txt")
+var data, _ = os.ReadFile("../../data/kp_table.txt")
 
 func TestParse_TabsInData(t *testing.T) {
 	// ensure that tabs are treated as fields
@@ -186,5 +186,21 @@ func TestParse_NonNumericValue(t *testing.T) {
 	_, err := parse(raw)
 	if err == nil || !strings.Contains(err.Error(), "parse") {
 		t.Errorf("expected parse error, got %v", err)
+	}
+}
+
+func TestFetchForecast_Success (t *testing.T) {
+	fc, err := FetchForecast()
+	if err != nil {
+		t.Fatalf("FetchForecast failed: %v", err)
+	}
+	if len(fc.Dates) != 3 {
+		t.Errorf("expected 3 dates, got %d", len(fc.Dates))
+	}
+	if len(fc.TimePeriods) != 8 {
+		t.Errorf("expected 8 time periods, got %d", len(fc.TimePeriods))
+	}
+	if len(fc.Values) != 8 {
+		t.Errorf("expected 8 value rows, got %d", len(fc.Values))
 	}
 }

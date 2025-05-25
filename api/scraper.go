@@ -1,4 +1,4 @@
-package scraper
+package api
 
 import (
 	"bufio"
@@ -9,17 +9,12 @@ import (
 	"time"
 
 	"github.com/gocolly/colly/v2"
+	"github.com/tswiger34/NorthernLightsApp/types"
 )
 
-type Forecast struct  {
-	Dates       []string    // Dates for the three days
-	TimePeriods []string    // Time periods for the forecast
-	Values      [][]float64 // Kp index values for each time period
-	ScrapedAt   time.Time   // Timestamp when the forecast was scraped
-}
 const forecastURL = "https://services.swpc.noaa.gov/text/3-day-forecast.txt"
 
-func parse(raw []byte) (*Forecast, error) {
+func parse(raw []byte) (*types.Forecast, error) {
 	scanner := bufio.NewScanner(bytes.NewReader(raw))
 	
 	
@@ -109,7 +104,7 @@ func parse(raw []byte) (*Forecast, error) {
 		values = append(values, row)
 	}
 	
-	return &Forecast{
+	return &types.Forecast{
 		Dates:       dates,
 		TimePeriods: timePeriods,
 		Values:      values,
@@ -117,7 +112,7 @@ func parse(raw []byte) (*Forecast, error) {
 	}, nil
 }
 
-func FetchForecast() (*Forecast, error) {
+func FetchForecast() (*types.Forecast, error) {
 	c := colly.NewCollector()
 	var body []byte
 	var scrapeErr error
@@ -132,5 +127,6 @@ func FetchForecast() (*Forecast, error) {
 	if scrapeErr != nil {
 		return nil, scrapeErr
 	}
-	return parse(body)
+	fc, err := parse(body)
+	return fc, err
 }
