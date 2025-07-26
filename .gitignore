@@ -1,5 +1,5 @@
 *.json
-.env
+*.env
 *.log
 app/adhoc.py
 *.csv
