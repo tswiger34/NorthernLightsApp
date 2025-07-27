@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from src.database.models import Alert
-from src.utils.schemas import AlertCreate, AlertUpdate
+from src.utils.models import AlertCreate, AlertUpdate
 
 class AlertManager:
     def __init__(self, db: Session):
