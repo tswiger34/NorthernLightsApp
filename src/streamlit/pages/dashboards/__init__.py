@@ -1,0 +1,3 @@
+from .solar_weather import main as solar_weather_dashboard
+
+solar_weather_dashboard
