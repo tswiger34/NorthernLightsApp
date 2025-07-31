@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 def main():
-    st.title("Solar Weather App")
+    st.title("Northern Lights Alerts")
     
     menu = ["Dashboard", "Alerts", "Settings"]
     choice = st.sidebar.selectbox("Select Page", menu)
@@ -16,9 +16,8 @@ def main():
 
 def display_dashboard():
     st.header("Dashboard")
-    st.write("Fetching weather data...")
+    st.write("Fetching data")
     
-    # Example API call to fetch weather data
     response = requests.get("http://localhost:8000/api/weather")
     if response.status_code == 200:
         weather_data = response.json()

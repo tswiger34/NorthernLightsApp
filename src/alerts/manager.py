@@ -1,13 +1,13 @@
 from sqlalchemy.orm import Session
 from src.database.models import Alert
 from src.utils.models import AlertCreate, AlertUpdate
-
+from src.database.connection import get_db
 class AlertManager:
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(self):
+        self.db:Session = get_db()
 
     def create_alert(self, alert_data: AlertCreate) -> Alert:
-        new_alert = Alert(**alert_data.dict())
+        new_alert = Alert(**alert_data.model_dump())
         self.db.add(new_alert)
         self.db.commit()
         self.db.refresh(new_alert)
@@ -19,7 +19,7 @@ class AlertManager:
     def update_alert(self, alert_id: int, alert_data: AlertUpdate) -> Alert:
         alert = self.get_alert(alert_id)
         if alert:
-            for key, value in alert_data.dict(exclude_unset=True).items():
+            for key, value in alert_data.model_dump(exclude_unset=True).items():
                 setattr(alert, key, value)
             self.db.commit()
             self.db.refresh(alert)
