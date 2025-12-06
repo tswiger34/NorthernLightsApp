@@ -7,12 +7,26 @@ requires-python = ">=3.13"
 dependencies = [
     "bcrypt>=4.3.0",
     "beautifulsoup4>=4.13.4",
+    "dagster>=1.11.5",
+    "dagster-dg-cli>=1.12.1",
+    "dagster-duckdb>=0.28.1",
+    "dagster-duckdb-polars>=0.28.1",
+    "dagster-webserver>=1.11.5",
+    "duckdb>=1.4.1",
     "fastapi-mail>=1.5.0",
     "fastapi[standard]>=0.116.1",
     "httpx>=0.28.1",
     "plotly[express]>=6.2.0",
+    "polars>=1.35.1",
     "psycopg2-binary>=2.9.10",
     "python-dotenv>=1.1.1",
     "sqlalchemy>=2.0.41",
     "streamlit>=1.47.1",
 ]
+
+[tool.dg]
+directory_type = "project"
+
+[tool.dg.project]
+root_module = "dagster_app"
+code_location_target_module = "dagster_app.definitions"

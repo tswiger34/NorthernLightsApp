@@ -5,3 +5,4 @@ app/adhoc.py
 *.csv
 *.sql
 *.db
+data/
